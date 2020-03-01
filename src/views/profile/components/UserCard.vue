@@ -14,10 +14,25 @@
       <div class="box-center">
         <div class="user-name text-center">{{ user.name }}</div>
         <div class="user-role text-center text-muted">{{ user.role | uppercaseFirst }}</div>
+
       </div>
     </div>
-
-    <div class="user-bio">
+<div class="user-bio">
+    <div class="user-education user-bio-section">
+        <div class="user-bio-section-header"><svg-icon icon-class="edit" /><span>修改密码</span></div>
+          <el-form  :model="postForm" :rules="rules" ref="postForm">
+            <el-form-item label="原密码" prop="oldPassword" ><el-input placeholder="原密码" show-password v-model="postForm.oldPassword"></el-input></el-form-item>
+            <el-form-item  label="新密码" prop="newPassword"><el-input placeholder="新密码" show-password  v-model="postForm.newPassword"></el-input></el-form-item>
+          
+              <el-form-item>
+               
+                 <el-button @click="chPw()" >提交</el-button>
+                 </el-form-item>
+            
+          </el-form>
+      </div>
+</div>
+    <!-- <div class="user-bio">
       <div class="user-education user-bio-section">
         <div class="user-bio-section-header"><svg-icon icon-class="education" /><span>Education</span></div>
         <div class="user-bio-section-body">
@@ -48,13 +63,14 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
   </el-card>
 </template>
 
 <script>
 import PanThumb from '@/components/PanThumb'
-
+import md5 from 'js-md5'
+import { changepassword } from '@/api/user'
 export default {
   components: { PanThumb },
   props: {
@@ -65,9 +81,53 @@ export default {
           name: '',
           email: '',
           avatar: '',
-          roles: ''
+          roles: '',
+         
         }
       }
+    }
+  },data(){
+    return{
+    postForm: {},
+    rules:{
+        oldPassword: { required: true, min: 6, trigger: 'blur' },
+        newPassword: { required: true, min: 6, trigger: 'blur' },
+    }
+  }
+  },methods:{
+    chPw(){
+
+          this.$confirm(' 是否继续?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+
+          this.$refs.postForm.validate(valid =>{
+          if(valid){
+            var data= {oldPassword:md5(this.postForm.oldPassword),newPassword:md5(this.postForm.newPassword)};
+            changepassword(data).then(response =>{
+             this.$notify({
+              title: '成功',
+              message: '提交成功',
+              type: 'success',
+              duration: 2000
+            })
+              
+            })
+
+          }else{
+          
+          return false
+          }
+              })
+
+        }).catch(() => {
+          
+        });
+      
+      
+     
     }
   }
 }

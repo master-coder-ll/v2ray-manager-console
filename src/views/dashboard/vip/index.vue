@@ -1,22 +1,24 @@
 <template>
   <div class="dashboard-editor-container">
         <github-corner class="github-corner" />
-    <!-- <el-row>
-      <el-col :xs="24" :sm="24" :lg="12">
-        <pan-thumb :image="avatar" style="float: left">
-          Your roles:
-          <span v-for="item in roles" :key="item" class="pan-info-roles">{{ item }}</span>
-        </pan-thumb>
-      </el-col  >
-      <el-col :xs="24" :sm="24" :lg="12">
-        <div class="text-align:center">  <span class=""> Your name:  {{ name }}</span></div>    
-      
-        </el-col>
-
-    </el-row> -->
-
-    <!-- <github-corner style="position: absolute; top: 0px; border: 0; right: 0;" /> -->
-  <el-row>
+    <el-row :gutter="10">
+        <el-card>
+           <el-tabs v-model="activeTab">
+           <el-tab-pane label="公告" name="Notice">
+                <Notice />
+              </el-tab-pane>
+              <el-tab-pane label="知识" name="knowledge">
+               todo
+              </el-tab-pane>
+              <!-- 
+              <el-tab-pane label="Account" name="account">
+                 <timeline />
+                <account :user="user" />
+              </el-tab-pane>  -->
+            </el-tabs>
+          </el-card>
+    </el-row>
+  <!-- <el-row>
     <h3>公告</h3>
   </el-row>
     <el-row>
@@ -31,7 +33,7 @@
   
   
 </el-collapse>
-    </el-row>
+    </el-row> -->
   </div>
 </template>
 
@@ -39,22 +41,24 @@
 import { mapGetters } from 'vuex'
 import PanThumb from '@/components/PanThumb'
 // import GithubCorner from '@/components/GithubCorner'
-import { listNotice } from '@/api/notice' 
+
 import GithubCorner from '@/components/GithubCorner'
+import Notice from './components/Notice'
 export default {
   name: 'DashboardEditor',
-  components: { PanThumb,GithubCorner },
+  components: { PanThumb,GithubCorner,Notice },
   data() {
     return {
       activeNames: 0,
-      list:null
+      list:null,
+      activeTab:"Notice"
     }
   },
   created(){
-      listNotice().then(response =>{
-           this.list= response.obj
-           this.activeNames=0;
-      })
+      // listNotice().then(response =>{
+      //      this.list= response.obj
+      //      this.activeNames=0;
+      // })
   },
   computed: {
     ...mapGetters([

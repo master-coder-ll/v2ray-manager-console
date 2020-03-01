@@ -25,6 +25,15 @@ export function forgot(data) {
     data
   })
 }
+
+
+export function changepassword(data) {
+  return request({
+    url: '/user/change-password',
+    method: 'post',
+    data
+  })
+}
 export function getInfo() {
   return request({
     url: '/user/info',

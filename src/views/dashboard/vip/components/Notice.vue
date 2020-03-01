@@ -6,8 +6,9 @@
         <span class="username text-muted">{{item.name}}</span>
         <span class="description"> Sharing time - {{ item.updateTime | parseTime('{y}-{m}-{d}')}}</span>
       </div>
-      
-      <div class="content" v-html="item.content"  />
+    
+        <div class="tui-editor-contents" v-html="item.content"  />
+      <!--     <markdown-editor mode='wysiwyg' v-model="item.content"  /> -->
      
       <!-- <ul class="list-inline">
         <li>
@@ -63,10 +64,15 @@
 </template>
 
 <script>
+
 const avatarPrefix = '?imageView2/1/w/80/h/80'
 const carouselPrefix = '?imageView2/2/h/440'
 import { listNotice } from '@/api/notice' 
+
+
+import 'tui-editor/dist/tui-editor-contents.css' // editor content
 export default {
+  components:{},
   data() {
     return {
       carouselImages: [
@@ -89,10 +95,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.content {
- 
- 
-}
 .user-activity {
   .user-block {
 

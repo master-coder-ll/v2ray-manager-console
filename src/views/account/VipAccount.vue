@@ -23,6 +23,15 @@
             </span>
           </el-form-item>
 
+            <el-form-item label=" 账号状态:" >
+              <!--  {{ account.fromDate | parseTime('{y}-{m}-{d} {h}:{i}') }} - -->
+        
+            <span>
+              <font v-if="account.status == 1">  {{ account.status |accountStatusFilter}}</font>
+              <font v-else color="red">  {{ account.status |accountStatusFilter}}</font>
+            </span>
+          </el-form-item>
+
             <el-form-item label=" 结算时间:" v-if="account.stat">
               <span>{{account.stat.toDate  | parseTime('{y}-{m}-{d} {h}:{i}') }}</span>
             </el-form-item>
@@ -181,6 +190,12 @@ export default {
         '1': 'success',
         '0': 'danger'
       }
+      return statusMap[status]
+    }, accountStatusFilter(status) {
+      const statusMap = {
+        '1': '正常',
+        '0': '禁用'
+      }  
       return statusMap[status]
     },
     statusFilter2(status) {

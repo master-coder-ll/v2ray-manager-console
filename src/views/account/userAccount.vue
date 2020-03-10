@@ -51,7 +51,7 @@
      <template slot-scope="scope">
     <div>单服务器连接数：{{ scope.row.maxConnection }}/账号</div>
     <div>账号等级:{{scope.row.level |levelFilter}}</div>      
-   
+   <div>账号状态:{{scope.row.status |accountStatusFilter}}</div>    
           </template>
  </el-table-column>
      
@@ -155,6 +155,13 @@ export default {
   components: { Pagination, VueQr },
   directives: { permission },
   filters: {
+     accountStatusFilter(status) {
+      const statusMap = {
+        '1': '正常',
+        '0': '禁用'
+      }  
+      return statusMap[status]
+    },
     speedFilter: function(v) {
       if (v <= 1024) { return '流畅' } else if (v > 1024 && v <= 2024) {
         return '高速'

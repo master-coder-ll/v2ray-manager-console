@@ -32,8 +32,8 @@
             </span>
           </el-form-item>
 
-            <el-form-item label=" 结算时间:" v-if="account.stat">
-              <span>{{account.stat.toDate  | parseTime('{y}-{m}-{d} {h}:{i}') }}</span>
+            <el-form-item label=" 结算时间:" v-if="account.statVO">
+              <span>{{account.statVO.toDate  | parseTime('{y}-{m}-{d} {h}:{i}') }}</span>
             </el-form-item>
           <el-form-item label="速率:" >
             <span></span>
@@ -47,8 +47,8 @@
             
        
             <span>
-              <font v-if="(account.stat?(account.stat.flow/1024/1024/1024).toFixed(2) : 0)<account.bandwidth">{{ account.stat?(account.stat.flow/1024/1024/1024).toFixed(2) : 0 }}</font>
-              <font v-else color="red">{{ account.stat?(account.stat.flow/1024/1024/1024).toFixed(2) : 0 }}</font>
+              <font v-if="(account.statVO?(account.statVO.flow/1024/1024/1024).toFixed(2) : 0)<account.bandwidth">{{ account.statVO?(account.statVO.flow/1024/1024/1024).toFixed(2) : 0 }}</font>
+              <font v-else color="red">{{ account.statVO?(account.statVO.flow/1024/1024/1024).toFixed(2) : 0 }}</font>
               /{{ account.bandwidth }}GB/周期</span>
           </el-form-item>
           <el-form-item label="连接数:">{{ account.maxConnection }}/账号

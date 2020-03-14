@@ -12,8 +12,8 @@
 
       <el-table-column  align="left" label="账号信息">
         <template slot-scope="scope">
-          <div><span>用户：{{ scope.row.user?scope.row.user.email:'' }}</span></div>
-            <div><span>备注：{{ scope.row.user?scope.row.user.remark:'' }}</span></div>
+          <div><span>用户：{{ scope.row.userVO?scope.row.userVO.email:'' }}</span></div>
+            <div><span>备注：{{ scope.row.userVO?scope.row.userVO.remark:'' }}</span></div>
           <div><span>账号：{{ scope.row.accountNo }}</span></div>
          
         </template>
@@ -28,9 +28,9 @@
               <font v-else color="red">  {{ scope.row.toDate | parseTime('{y}-{m}-{d} {h}:{i}') }}</font>
             </span>
           </div>
-          <div v-if="scope.row.stat">
+          <div v-if="scope.row.statVO">
 
-            <span>结算时间：{{scope.row.stat.toDate  | parseTime('{y}-{m}-{d} {h}:{i}') }}</span>
+            <span>结算时间：{{scope.row.statVO.toDate  | parseTime('{y}-{m}-{d} {h}:{i}') }}</span>
           </div>
             </template>
   </el-table-column>
@@ -40,8 +40,8 @@
   <div> <span>速率：{{ scope.row.speed | speedFilter }}</span></div>
           <div>周期：{{ scope.row.cycle }}天/周期</div>
           <div>流量：<span>
-            <font v-if="(scope.row.stat?(scope.row.stat.flow/1024/1024/1024).toFixed(2) : 0)<scope.row.bandwidth">{{ scope.row.stat?(scope.row.stat.flow/1024/1024/1024).toFixed(2) : 0 }}</font>
-            <font v-else color="red">{{ scope.row.stat?(scope.row.stat.flow/1024/1024/1024).toFixed(2) : 0 }}</font>
+            <font v-if="(scope.row.statVO?(scope.row.statVO.flow/1024/1024/1024).toFixed(2) : 0)<scope.row.bandwidth">{{ scope.row.statVO?(scope.row.statVO.flow/1024/1024/1024).toFixed(2) : 0 }}</font>
+            <font v-else color="red">{{ scope.row.statVO?(scope.row.statVO.flow/1024/1024/1024).toFixed(2) : 0 }}</font>
             /{{ scope.row.bandwidth }}GB/周期</span>
           </div>
             </template>

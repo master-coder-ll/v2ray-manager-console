@@ -26,10 +26,11 @@ export function del(id) {
  * 更新v2ray账号
  * @param  data
  */
-export function generate(count) {
+export function generate(data) {
   return request({
     url: `invite-code`,
-    method: 'post'
+    method: 'post',
+    data
   })
 }
 

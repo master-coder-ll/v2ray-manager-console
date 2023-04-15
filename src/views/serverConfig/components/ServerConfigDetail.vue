@@ -14,10 +14,10 @@
         <el-input v-model="postForm.value" />
       </el-form-item>
 
-    <el-form-item>
-      <el-button v-loading="loading" style="margin-left: 10px;" type="success" @click="submitForm">
-        提交
-      </el-button>
+      <el-form-item>
+        <el-button v-loading="loading" style="margin-left: 10px;" type="success" @click="submitForm">
+          提交
+        </el-button>
       </el-form-item>
 
     </el-form>
@@ -29,12 +29,12 @@ import { addServerConfig, getServerConfig, updateServerConfig } from '@/api/serv
 const defaultForm = {
   name: '',
   key: '',
-  value: 'true',
+  value: 'true'
 
 }
 const defaultRules = {
   key: { required: true, trigger: 'blur' },
-  value: { required: true, trigger: 'blur' },
+  value: { required: true, trigger: 'blur' }
 
 }
 
@@ -51,8 +51,7 @@ export default {
       postForm: Object.assign({}, defaultForm),
       loading: false,
       rules: Object.assign({}, defaultRules),
-      tempRoute: {},
-
+      tempRoute: {}
 
     }
   },
@@ -75,7 +74,6 @@ export default {
       console.log('server get id ' + id)
       getServerConfig(id).then(response => {
         this.postForm = response.obj
-
       })
     },
     submitForm() {
@@ -85,7 +83,7 @@ export default {
           this.loading = true
           var req = this.isEdit ? updateServerConfig(this.postForm) : addServerConfig(this.postForm)
           req.then(response => {
-           // console.log('addserver chenggong !' + response)
+            // console.log('addserver chenggong !' + response)
             this.$notify({
               title: '成功',
               message: '提交成功',
@@ -136,7 +134,7 @@ export default {
   }
 }
 
-.article-textarea /deep/ {
+.article-textarea ::v-deep {
   textarea {
     padding-right: 40px;
     resize: none;

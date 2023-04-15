@@ -32,9 +32,15 @@
         </template>
       </el-table-column>
 
-        <el-table-column width="80px" align="center" label="服务器等级">
+      <el-table-column width="80px" align="center" label="服务器等级">
         <template slot-scope="{row}">
-           <span>{{ row.level | levelFilter}}</span>
+          <span>{{ row.level | levelFilter }}</span>
+        </template>
+      </el-table-column>
+
+      <el-table-column width="80px" align="center" label="alterId">
+        <template slot-scope="{row}">
+          <span>{{ row.alterId }}</span>
         </template>
       </el-table-column>
 
@@ -96,7 +102,7 @@ export default {
         '0': '等级0',
         '1': '等级1',
         '2': '等级2',
-        '3': '等级3',
+        '3': '等级3'
       }
       return levelMap[level]
     }

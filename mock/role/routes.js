@@ -1,6 +1,6 @@
 // Just a mock data
 
-export const constantRoutes = [
+const constantRoutes = [
   {
     path: '/redirect',
     component: 'layout/Layout',
@@ -72,7 +72,7 @@ export const constantRoutes = [
   }
 ]
 
-export const asyncRoutes = [
+const asyncRoutes = [
   {
     path: '/permission',
     component: 'layout/Layout',
@@ -136,12 +136,6 @@ export const asyncRoutes = [
       icon: 'component'
     },
     children: [
-      {
-        path: 'tinymce',
-        component: 'views/components-demo/tinymce',
-        name: 'TinymceDemo',
-        meta: { title: 'Tinymce' }
-      },
       {
         path: 'markdown',
         component: 'views/components-demo/markdown',
@@ -523,3 +517,8 @@ export const asyncRoutes = [
 
   { path: '*', redirect: '/404', hidden: true }
 ]
+
+module.exports = {
+  constantRoutes,
+  asyncRoutes
+}

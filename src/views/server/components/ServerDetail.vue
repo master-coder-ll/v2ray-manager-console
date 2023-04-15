@@ -53,7 +53,7 @@
         <el-input v-model="postForm.desc" />
       </el-form-item>
 
-        <el-form-item label="服务器等级" prop="level">
+      <el-form-item label="服务器等级" prop="level">
         <el-select v-model="postForm.level">
           <el-option
             v-for="item in levelOptions"
@@ -63,6 +63,10 @@
           />
         </el-select>
       </el-form-item>
+      <el-form-item label="alterId" prop="alterId">
+        <el-input v-model="postForm.alterId" placeholder="v2ray版本>(4.35.0)为0" />
+      </el-form-item>
+
       <el-form-item label="服务器状态" prop="status">
         <el-select v-model="postForm.status">
           <el-option
@@ -102,9 +106,10 @@ const defaultForm = {
 
   // 说明
   desc: '',
+  alterId: '0',
   // 服务器状态
   status: 1,
-  level:0,
+  level: 0,
   inboundTag: '',
   // 单账号最大连接数
   maxConnection: 100,
@@ -155,7 +160,7 @@ export default {
       rules: Object.assign({}, defaultRules),
       tempRoute: {},
       statusOptions: [{ value: 1, label: '上线' }, { value: 0, label: '下线' }],
-      levelOptions: [{ value: 0, label: '等级0' }, { value: 1, label: '等级1' },{ value: 2, label: '等级2' },{ value: 3, label: '等级3' }]
+      levelOptions: [{ value: 0, label: '等级0' }, { value: 1, label: '等级1' }, { value: 2, label: '等级2' }, { value: 3, label: '等级3' }]
 
     }
   },
@@ -239,7 +244,7 @@ export default {
   }
 }
 
-.article-textarea /deep/ {
+.article-textarea ::v-deep {
   textarea {
     padding-right: 40px;
     resize: none;

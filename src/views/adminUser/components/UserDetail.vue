@@ -78,8 +78,8 @@ export default {
       this.$refs.postForm.validate(valid => {
         if (valid) {
           this.loading = true
-          const formData= Object.assign({},this.postForm )
-           formData.password=md5(formData.password)
+          const formData = Object.assign({}, this.postForm)
+          formData.password = md5(formData.password)
           addUser(formData).then(response => {
             this.$notify({
               title: '成功',
@@ -131,7 +131,7 @@ export default {
   }
 }
 
-.article-textarea /deep/ {
+.article-textarea ::v-deep {
   textarea {
     padding-right: 40px;
     resize: none;

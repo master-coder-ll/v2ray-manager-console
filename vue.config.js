@@ -32,6 +32,13 @@ module.exports = {
   productionSourceMap: false,
 
   devServer: {
+     proxy: {
+       '/api': {
+         target: 'http://localhost:9091', // адрес вашего бэкенда
+         secure: false,
+         pathRewrite: { '^/api': '' }
+       },
+     },
     port: port,
     open: true,
     client: {

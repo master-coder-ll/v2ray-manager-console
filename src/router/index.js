@@ -81,7 +81,7 @@ export const constantRoutes = [
         name: 'Dashboard',
         meta: { title: 'Dashboard', icon: 'dashboard', affix: true }
       }
-    ]  
+    ]
   },
   {
     path: '/profile',
@@ -227,9 +227,9 @@ export const asyncRoutes = [
     path: '/server',
     component: Layout,
     redirect: '/server/list',
-    name: '服务器',
+    name: 'Сервер',
     meta: {
-      title: '服务器',
+      title: 'Сервер',
       icon: 'example',
       roles: ['admin']
     },
@@ -237,21 +237,21 @@ export const asyncRoutes = [
       {
         path: 'create',
         component: () => import('@/views/server/create'),
-        name: '创建服务器',
-        meta: { title: '创建服务器', icon: 'edit',roles: ['admin'] }
+        name: 'Создать',
+        meta: { title: 'Создать сервер', icon: 'edit',roles: ['admin'] }
       },
       {
         path: 'edit/:id(\\d+)',
         component: () => import('@/views/server/edit'),
-        name: '修改服务器',
-        meta: { title: '修改服务器', noCache: true, activeMenu: '/server/list' ,roles: ['admin'] },
+        name: 'Изменить',
+        meta: { title: 'Изменить сервер', noCache: true, activeMenu: '/server/list' ,roles: ['admin'] },
         hidden: true
       },
       {
         path: 'list',
         component: () => import('@/views/server/list'),
-        name: '服务器列表',
-        meta: { title: '服务器列表', icon: 'list' }
+        name: 'Список',
+        meta: { title: 'Список серверов', icon: 'list' }
       }
     ]
   },
@@ -260,9 +260,9 @@ export const asyncRoutes = [
     path: '/adminUser',
     component: Layout,
     redirect: '/adminUser/list',
-    name: '用户管理',
+    name: 'Управление пользователями',
     meta: {
-      title: '用户管理',
+      title: 'Управление пользователями',
       icon: 'example',
       roles: ['admin']
     },
@@ -270,36 +270,36 @@ export const asyncRoutes = [
       {
         path: 'create',
         component: () => import('@/views/adminUser/create'),
-        name: '创建用户',
-        meta: { title: '创建用户', icon: 'edit' }
+        name: 'Создать пользователя',
+        meta: { title: 'Создать пользователя', icon: 'edit' }
       },
       {
         path: 'list',
         component: () => import('@/views/adminUser/list'),
-        name: '用户列表',
-        meta: { title: '用户列表', icon: 'list' }
+        name: 'Cписок пользователей',
+        meta: { title: 'Cписок пользователей', icon: 'list' }
       }
     ]
   },
-  
+
   {
     path: '/account',
     component: Layout,
-    name:'账号',
-    meta:{icon: 'tab', title:"账号"},
+    name:'Баланс',
+    meta:{icon: 'tab', title:"Баланс"},
     children: [
       {
         path: 'userAccount',
         component: () => import('@/views/account/userAccount'),
-        name: '账号',
-        meta: { title: '账号管理' , roles: ['admin'] },
+        name: 'Баланс',
+        meta: { title: 'Управление аккаунтом' , roles: ['admin'] },
       },
       {
-        path: 'VipAccount', 
+        path: 'VipAccount',
         component: () => import('@/views/account/VipAccount'),
-        name: '账号',
-        meta: { title: '我的账号' , roles: ['vip'] }
-      
+        name: 'Баланс',
+        meta: { title: 'Мой баланс' , roles: ['vip'] }
+
       }
     ]
   },
@@ -308,9 +308,9 @@ export const asyncRoutes = [
     path: '/notice',
     component: Layout,
     redirect: '/notice/list',
-    name: '公告管理',
+    name: 'Управление объявлениями',
     meta: {
-      title: '公告管理',
+      title: 'Управление',
       icon: 'eye-open',
       roles: ['admin']
     },
@@ -318,14 +318,14 @@ export const asyncRoutes = [
       {
         path: 'create',
         component: () => import('@/views/notice/create'),
-        name: '创建公告',
-        meta: { title: '创建公告', icon: 'edit',roles: ['admin'] }
+        name: 'Создать объявление',
+        meta: { title: 'Создать объявление', icon: 'edit',roles: ['admin'] }
       },
       {
         path: 'edit/:id(\\d+)',
         component: () => import('@/views/notice/edit'),
-        name: '修改公告',
-        meta: { title: '修改公告', noCache: true, activeMenu: '/notice/list' ,roles: ['admin'] },
+        name: 'Уведомление об изменении',
+        meta: { title: 'Уведомление об изменении', noCache: true, activeMenu: '/notice/list' ,roles: ['admin'] },
         hidden: true
       },
       {
@@ -348,7 +348,7 @@ export const asyncRoutes = [
       roles: ['vip']
     },
     children: [
-      
+
       {
         path: 'list',
         component: () => import('@/views/inviteCode/list'),
@@ -362,9 +362,9 @@ export const asyncRoutes = [
     path: '/serverConfig',
     component: Layout,
     redirect: '/serverConfig/list',
-    name: '参数管理',
+    name: 'Управление',
     meta: {
-      title: '参数管理',
+      title: 'Управление параметрами',
       icon: 'tab',
       roles: ['admin']
     },
@@ -391,9 +391,9 @@ export const asyncRoutes = [
     ]
   },
   //componentsRouter,
-  
-   
-//  
+
+
+//
 //   {
 //     path: '/tab',
 //     component: Layout,
@@ -548,7 +548,7 @@ export const asyncRoutes = [
 //     path: 'external-link',
 //     component: Layout,
 //     children: [
-//       { 
+//       {
 //         path: 'https://github.com/PanJiaChen/vue-element-admin',
 //         meta: {title: 'External Link', icon: 'link' }
 //       }

@@ -1,59 +1,54 @@
 <template>
   <div class="createPost-container">
-    <el-form ref="postForm" :model="postForm" :rules="rules" class="form-container" label-width="100px">
+    <el-form ref="postForm" :model="postForm" :rules="rules" class="form-container" label-width="200px">
 
-      <el-form-item label="服务器名称" prop="serverName">
+      <el-form-item label="Имя сервера" prop="serverName">
         <el-input v-model="postForm.serverName" />
       </el-form-item>
 
-      <el-form-item label="访问域名" prop="clientDomain">
+      <el-form-item label="Домен" prop="clientDomain">
         <el-input v-model="postForm.clientDomain" />
       </el-form-item>
 
-      <el-form-item label="访问端口" prop="clientPort">
+      <el-form-item label="Порт" prop="clientPort">
         <el-input v-model="postForm.clientPort" />
       </el-form-item>
 
-      <el-form-item label="支持TLS" prop="supportTLS">
+      <el-form-item label="Поддержка TLS" prop="supportTLS">
         <el-radio-group v-model="postForm.supportTLS">
-          <el-radio v-model="postForm.supportTLS" :label="true">是</el-radio>
-          <el-radio v-model="postForm.supportTLS" :label="false">否</el-radio>
+          <el-radio v-model="postForm.supportTLS" :label="true">Да</el-radio>
+          <el-radio v-model="postForm.supportTLS" :label="false">Нет</el-radio>
         </el-radio-group>
-        <!-- <el-radio v-model="postForm.supportTLS" label="true">是</el-radio>
-        <el-radio v-model="postForm.supportTLS" label="false">否</el-radio> -->
       </el-form-item>
-      <el-form-item label="中间件地址" prop="proxyIp">
+      <el-form-item label="Proxy ip" prop="proxyIp">
         <el-input v-model="postForm.proxyIp" placeholder="127.0.0.1" />
       </el-form-item>
-      <el-form-item label="中间件端口" prop="proxyPort">
+      <el-form-item label="Proxy порт" prop="proxyPort">
         <el-input v-model="postForm.proxyPort" />
       </el-form-item>
-      <el-form-item label="v2ray地址" prop="v2rayIp">
+      <el-form-item label="v2ray ip" prop="v2rayIp">
         <el-input v-model="postForm.v2rayIp" placeholder="127.0.0.1" />
       </el-form-item>
-      <el-form-item label="v2ray端口" prop="v2rayPort">
+      <el-form-item label="v2ray порт" prop="v2rayPort">
         <el-input v-model="postForm.v2rayPort" />
       </el-form-item>
-      <el-form-item label="v2ray管理端口" prop="v2rayManagerPort">
+      <el-form-item label="v2ray API порт" prop="v2rayManagerPort">
         <el-input v-model="postForm.v2rayManagerPort" />
       </el-form-item>
-      <el-form-item label="流量倍数" prop="Multiple">
+      <el-form-item label="Несколько трафиков" prop="Multiple">
         <el-input v-model="postForm.multiple" placeholder="1" />
       </el-form-item>
       <el-form-item label="v2rayTag" prop="inboundTag">
         <el-input v-model="postForm.inboundTag" />
       </el-form-item>
-      <!-- <el-form-item label="连接数" prop="maxConnection">
-        <el-input v-model="postForm.maxConnection"></el-input>
-      </el-form-item> -->
-      <el-form-item label="ws路径" prop="wsPath">
+      <el-form-item label="ws путь" prop="wsPath">
         <el-input v-model="postForm.wsPath" placeholder="/ws/%s/" />
       </el-form-item>
-      <el-form-item label="服务描述">
+      <el-form-item label="Описание услуг">
         <el-input v-model="postForm.desc" />
       </el-form-item>
 
-      <el-form-item label="服务器等级" prop="level">
+      <el-form-item label="Level" prop="level">
         <el-select v-model="postForm.level">
           <el-option
             v-for="item in levelOptions"
@@ -64,10 +59,10 @@
         </el-select>
       </el-form-item>
       <el-form-item label="alterId" prop="alterId">
-        <el-input v-model="postForm.alterId" placeholder="v2ray版本>(4.35.0)为0" />
+        <el-input v-model="postForm.alterId" placeholder="версия v2ray>(4.35.0) равна 0" />
       </el-form-item>
 
-      <el-form-item label="服务器状态" prop="status">
+      <el-form-item label="Состояние сервера" prop="status">
         <el-select v-model="postForm.status">
           <el-option
             v-for="item in statusOptions"
@@ -79,7 +74,7 @@
       </el-form-item>
 
       <el-button v-loading="loading" style="margin-left: 10px;" type="success" @click="submitForm">
-        提交
+        Отправить
       </el-button>
     </el-form>
   </div>
@@ -93,27 +88,26 @@ const defaultForm = {
   clientPort: 443,
   supportTLS: true,
 
-  // proxy中间件管理 ip port;
-
+  // управление промежуточным ПО прокси-сервера ip port;
   proxyIp: '127.0.0.1',
   proxyPort: 8091,
-  // v2ray 开放 的 ip 和端口
+  // v2ray открываем IP и порт
   v2rayIp: '127.0.0.1',
   v2rayPort: 6001,
   v2rayManagerPort: 62789,
-  // 流量倍数
+  // Несколько трафиков
   multiple: 1,
 
-  // 说明
+  // иллюстрировать
   desc: '',
   alterId: '0',
-  // 服务器状态
+  // Состояние сервера
   status: 1,
   level: 0,
   inboundTag: '',
-  // 单账号最大连接数
+  // Максимальное количество подключений для одной учетной записи
   maxConnection: 100,
-  // ws路径
+  // ws путь
   wsPath: '/ws/%s/'
 }
 const defaultRules = {
@@ -122,26 +116,26 @@ const defaultRules = {
   clientPort: { required: true, trigger: 'blur' },
   supportTLS: { required: true, trigger: 'blur' },
 
-  // proxy中间件管理 ip port;
+  // proxy ip port;
 
   proxyIp: { required: true, trigger: 'blur' },
   proxyPort: { required: true, trigger: 'blur' },
-  // v2ray 开放 的 ip 和端口
+  // v2ray открыть IP и порт
   v2rayIp: { required: true, trigger: 'blur' },
   v2rayPort: { required: true, trigger: 'blur' },
   v2rayManagerPort: { required: true, trigger: 'blur' },
-  // 流量倍数
+  // Несколько трафиков
   multiple: { required: true, trigger: 'blur' },
 
-  // 说明
+  // иллюстрировать
   desc: '',
-  // 服务器状态
+  // Состояние сервера
   status: { required: true, trigger: 'blur' },
 
   inboundTag: { required: true, trigger: 'blur' },
-  // 单账号最大连接数
+  // Максимальное количество подключений для одной учетной записи
   // maxConnection:{ required: true, trigger: 'blur' },
-  // ws路径
+  // ws путь
   wsPath: { required: true, trigger: 'blur' }
 }
 
@@ -159,8 +153,8 @@ export default {
       loading: false,
       rules: Object.assign({}, defaultRules),
       tempRoute: {},
-      statusOptions: [{ value: 1, label: '上线' }, { value: 0, label: '下线' }],
-      levelOptions: [{ value: 0, label: '等级0' }, { value: 1, label: '等级1' }, { value: 2, label: '等级2' }, { value: 3, label: '等级3' }]
+      statusOptions: [{ value: 1, label: 'В сети' }, { value: 0, label: 'Не в сети' }],
+      levelOptions: [{ value: 0, label: 'Уровень 0' }, { value: 1, label: 'Уровень 1' }, { value: 2, label: 'Уровень 2' }, { value: 3, label: 'Уровень 3' }]
 
     }
   },
@@ -195,8 +189,8 @@ export default {
           req.then(response => {
             console.log('addserver chenggong !' + response)
             this.$notify({
-              title: '成功',
-              message: '提交成功',
+              title: 'Успешно',
+              message: 'Отправлено успешно',
               type: 'success',
               duration: 2000
             })

@@ -6,7 +6,7 @@
       <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
 
         <div class="title-container">
-          <h3 class="title">登录</h3>
+          <h3 class="title">Авторизация</h3>
         </div>
 
         <el-form-item prop="email">
@@ -16,7 +16,7 @@
           <el-input
             ref="username"
             v-model="loginForm.email"
-            placeholder="email"
+            placeholder="Email"
             name="email"
             type="text"
             tabindex="1"
@@ -49,10 +49,10 @@
         <div class="tips">
           <el-row>
             <el-col :span="9" :push="1">
-              <el-button type="text" @click.native.prevent="onVisible('reg')"> 注册</el-button>
+              <el-button type="text" @click.native.prevent="onVisible('reg')"> Регистрация</el-button>
 
             </el-col>
-            <el-col :span="8" :push="11"> <el-button type="text" @click.native.prevent="onVisible('forgot')">忘记密码?</el-button></el-col>
+            <el-col :span="8" :push="11"> <el-button type="text" @click.native.prevent="onVisible('forgot')">Забыл пароль?</el-button></el-col>
 
           </el-row>
         </div>
@@ -63,7 +63,7 @@
 
       <el-form ref="regForm" :model="regForm" :rules="regRules" class="login-form" auto-complete="on" label-position="left">
         <div class="title-container">
-          <h3 class="title">注册 </h3>
+          <h3 class="title">Регистрация </h3>
         </div>
 
         <el-form-item prop="email">
@@ -73,7 +73,7 @@
           <el-input
             ref="email"
             v-model="regForm.email"
-            placeholder="email"
+            placeholder="Email"
             name="email"
             type="text"
             tabindex="21"
@@ -85,7 +85,7 @@
           <el-col :span="12"> <el-input
             ref="vCode"
             v-model="regForm.vCode"
-            placeholder="验证码"
+            placeholder="Проверочный код"
             name="vCode"
             type="text"
             width="50%"
@@ -117,7 +117,7 @@
             ref="password2"
             v-model="regForm.password2"
             :type="passwordType"
-            placeholder="再次输入你的密码"
+            placeholder="Введите пароль еще раз"
             name="password2"
             tabindex="24"
           />
@@ -129,19 +129,19 @@
        <el-input
             ref="inviteCode"
             v-model="regForm.inviteCode"
-            placeholder="邀请码"
+            placeholder="Код приглашения"
             name="inviteCode"
             type="text"
             tabindex="22"
           />
         </el-form-item>
 
-        <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="reg">提交</el-button>
+        <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="reg">Регистрация</el-button>
         <div class="tips">
           <el-row>
             <el-col :span="24">
 
-              <el-button type="text" @click.native.prevent="offVisible">返回</el-button>
+              <el-button type="text" @click.native.prevent="offVisible">Назад</el-button>
             </el-col>
 
           </el-row>
@@ -154,7 +154,7 @@
 
       <el-form ref="forgotForm" :model="forgotForm" :rules="forgotRules" class="login-form" auto-complete="on" label-position="left">
         <div class="title-container">
-          <h3 class="title">找回密码 </h3>
+          <h3 class="title">Получить пароль </h3>
         </div>
 
         <el-form-item prop="email">
@@ -164,7 +164,7 @@
           <el-input
             ref="email"
             v-model="forgotForm.email"
-            placeholder="email"
+            placeholder="Email"
             name="email"
             type="text"
             tabindex="21"
@@ -176,7 +176,7 @@
           <el-col :span="12"> <el-input
             ref="vCode"
             v-model="forgotForm.vCode"
-            placeholder="验证码"
+            placeholder="Проверочный код"
             name="vCode"
             type="text"
             width="50%"
@@ -208,17 +208,17 @@
             ref="password2"
             v-model="forgotForm.password2"
             :type="passwordType"
-            placeholder="再次输入你的密码"
+            placeholder="Введите пароль еще раз"
             name="password2"
             tabindex="24"
           />
         </el-form-item>
 
-        <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="forgot">修改密码</el-button>
+        <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="forgot">Забыл пароль</el-button>
         <div class="tips">
           <el-row>
 
-            <el-col :span="24"> <el-button type="text" @click.native.prevent="offVisible">返回</el-button></el-col>
+            <el-col :span="24"> <el-button type="text" @click.native.prevent="offVisible">Назад</el-button></el-col>
 
           </el-row>
         </div>
@@ -244,28 +244,28 @@ export default {
   data() {
     const validateUsername = (rule, value, callback) => {
       if (!validEmail(value)) {
-        callback(new Error('请输入正确的email'))
+        callback(new Error('Пожалуйста, введите правильный адрес электронной почты'))
       } else {
         callback()
       }
     }
     const validatePassword = (rule, value, callback) => {
       if (value.length < 6) {
-        callback(new Error('密码大于6位'))
+        callback(new Error('Пароль больше 6 символов'))
       } else {
         callback()
       }
     }
     const validatePassword2 = (rule, value, callback) => {
       if (this.regForm.password !== value) {
-        callback(new Error('密码不相同'))
+        callback(new Error('Пароли не совпадают'))
         return
       }
       callback()
     }
     const validatefogotPassword2 = (rule, value, callback) => {
       if (this.forgotForm.password !== value) {
-        callback(new Error('密码不相同'))
+        callback(new Error('Пароли не совпадают'))
         return
       }
       callback()
@@ -288,16 +288,16 @@ export default {
 
       },
       forgotRules: {
-        email: [{ required: true, message: '请输入邮箱地址', trigger: 'blur' },
-          { type: 'email', message: '请输入正确的邮箱地址', trigger: ['blur', 'change'] }],
-        vCode: [{ required: true, trigger: 'blur', message: '请输入正确的验证码' }],
+        email: [{ required: true, message: 'Пожалуйста, введите адрес электронной почты', trigger: 'blur' },
+          { type: 'email', message: 'Пожалуйста, введите правильный адрес электронной почты', trigger: ['blur', 'change'] }],
+        vCode: [{ required: true, trigger: 'blur', message: 'Пожалуйста, введите правильный код подтверждения' }],
         password: [{ required: true, trigger: 'blur', validator: validatePassword }],
         password2: [{ required: true, trigger: 'blur', validator: validatefogotPassword2 }]
       },
       regRules: {
-        email: [{ required: true, message: '请输入邮箱地址', trigger: 'blur' },
-          { type: 'email', message: '请输入正确的邮箱地址', trigger: ['blur', 'change'] }],
-        vCode: [{ required: true, trigger: 'blur', message: '请输入正确的验证码' }],
+        email: [{ required: true, message: 'Пожалуйста, введите адрес электронной почты', trigger: 'blur' },
+          { type: 'email', message: 'Пожалуйста, введите правильный адрес электронной почты', trigger: ['blur', 'change'] }],
+        vCode: [{ required: true, trigger: 'blur', message: 'Пожалуйста, введите правильный код подтверждения' }],
         password: [{ required: true, trigger: 'blur', validator: validatePassword }],
         password2: [{ required: true, trigger: 'blur', validator: validatePassword2 }]
       },
@@ -315,7 +315,7 @@ export default {
       fgVisible: false,
       regVisible: false,
       loginVisible: true,
-      VcodeContext: '获取验证码',
+      VcodeContext: 'Отправить код',
       wait_timer: 0
     }
   },
@@ -332,10 +332,10 @@ export default {
       var email = this.$refs[form].model.email
       var inviteCode = this.$refs[form].model.inviteCode
       if (!validEmail(email)) {
-        this.$message.error('email不正确,不能获取验证码')
+        this.$message.error('Адрес электронной почты неверен, и код подтверждения не может быть получен.')
       } else {
         sendEmail(email, type,inviteCode).then(resp => {
-          this.$message.success('邮件可能出现在你的垃圾箱中,请注意。')
+          this.$message.success('Письмо может оказаться в корзине, обратите внимание.')
           this.wait_timer = 89
           var that = this
           var vcodeContext = this.VcodeContext
@@ -360,7 +360,7 @@ export default {
            formData.password=md5(formData.password)
           forgot(formData).then(resp => {
             this.$message({
-              message: '修改成功',
+              message: 'Успешно изменено',
               type: 'success'
             })
             this.offVisible()
@@ -381,7 +381,7 @@ export default {
            formData.password=md5(formData.password)
           reg(formData).then(resp => {
             this.$message({
-              message: '注册成功',
+              message: 'Вы успешно зарегистрировались',
               type: 'success'
             })
             this.offVisible()
@@ -452,7 +452,7 @@ export default {
 </script>
 
 <style lang="scss">
-/* 修复input 背景不协调 和光标变色 */
+/* Исправлена ​​дисгармония фона ввода и изменение цвета курсора. */
 /* Detail see https://github.com/PanJiaChen/vue-element-admin/pull/927 */
 
 $bg:#283443;

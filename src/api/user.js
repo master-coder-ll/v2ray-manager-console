@@ -1,8 +1,9 @@
 import request from '@/utils/request'
 
 export function login(data) {
+  console.log(data)
   return request({
-    url: '/user/login',
+    url: '/api/user/login',
     method: 'post',
     data
   })
@@ -10,7 +11,7 @@ export function login(data) {
 
 export function reg(data) {
   return request({
-    url: '/user/reg',
+    url: '/api/user/reg',
     method: 'post',
     params: { 'vCode': data.vCode },
     data
@@ -19,7 +20,7 @@ export function reg(data) {
 
 export function forgot(data) {
   return request({
-    url: '/user/forgot',
+    url: '/api/user/forgot',
     method: 'post',
     params: { 'vCode': data.vCode },
     data
@@ -29,21 +30,21 @@ export function forgot(data) {
 
 export function changepassword(data) {
   return request({
-    url: '/user/change-password',
+    url: '/api/user/change-password',
     method: 'post',
     data
   })
 }
 export function getInfo() {
   return request({
-    url: '/user/info',
+    url: '/api/user/info',
     method: 'get'
   })
 }
 
 export function logout() {
   return request({
-    url: '/user/logout',
+    url: '/api/user/logout',
     method: 'get'
   })
 }
@@ -53,7 +54,7 @@ export function logout() {
  */
 export function userList(pageable) {
   return request({
-    url: '/user',
+    url: '/api/user',
     method: 'get',
     params: pageable
   })
@@ -65,7 +66,7 @@ export function userList(pageable) {
  */
 export function addUser(data) {
   return request({
-    url: '/user',
+    url: '/api/user',
     method: 'post',
     data
   })
@@ -74,11 +75,11 @@ export function addUser(data) {
 /**
  * 添加备注
  * addRemark
- * @param {int id ,string remark} data 
+ * @param {int id ,string remark} data
  */
 export function addremark(data) {
   return request({
-    url: 'user/addRemark',
+    url: 'api/user/addRemark',
     method: 'post',
     data
   })
@@ -89,7 +90,7 @@ export function addremark(data) {
  */
 export function getUser(id) {
   return request({
-    url: `/user/${id}`,
+    url: `/api/user/${id}`,
     method: 'get'
   })
 }
@@ -99,7 +100,7 @@ export function getUser(id) {
  */
 export function delUser(id) {
   return request({
-    url: `/user/${id}`,
+    url: `/api/user/${id}`,
     method: 'delete'
   })
 }
@@ -110,7 +111,7 @@ export function delUser(id) {
  */
 export function updateUserStatus(data) {
   return request({
-    url: '/user/status',
+    url: '/api/user/status',
     method: 'put',
     data
   })
